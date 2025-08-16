@@ -4,12 +4,47 @@ En .NET C# konsolapplikation som demonstrerar skillnaden mellan hashning med och
 
 ## Funktioner
 
-- **Hashning utan salt**: Visar hur samma input alltid ger samma hash
+- **Hashning utan salt## För den nyfikne utforskaren - Hemlig Hash Master Mode! 🔓
+
+Det finns en dold funktionalitet i applikationen för dem som är kunniga nog att lösa gåtan...
+
+### 🧩 Easter Egg-utmaning
+
+**Fråga:**
+Vilket smeknamn passar bäst för en utvecklare som är vass på säker lösenordslagring med hashning och salting?
+
+**Ledtrådar:**
+- Börjar med ordet för processen: `hash`
+- Slutar med engelska ordet för mästare
+- Ett ord, 10 bokstäver
+- Låter som en titel/roll
+
+### 🎯 Så här låser du upp den hemliga menyn:
+
+1. **Första steget**: Lista ut ordet utifrån ledtrådarna
+2. **Andra steget**: Använd alternativ 1 (Hasha text UTAN salt) i huvudmenyn
+3. **Tredje steget**: Mata in det hemliga ordet som text att hasha
+4. **Fjärde steget**: Kopiera hela hash-resultatet som visas
+5. **Femte steget**: Gå tillbaka till huvudmenyn och klistra in hash-värdet som menyval
+6. **Sjätte steget**: 🎉 Välkommen till Hash Master Mode!
+
+**Tips:** Skiftläge kan spela roll i vissa sammanhang. Använd gemener om du fastnar.
+
+### 🔓 Vad du hittar i Hash Master Mode:
+
+- **🌈 Regnbågs-hash**: Se samma text hashad på olika sätt i olika färger
+- **🎲 Hash-gissningsspel**: Kan du gissa vilken input som skapade en viss hash?
+- **🔍 Hash-kollision simulator**: Lär dig om hash-kollisioner (simulerat)ma input alltid ger samma hash
 - **Hashning med salt**: Visar hur salt gör att samma input ger olika hash-värden
 - **Prestandatest**: Jämför prestanda mellan hashning med och utan salt över tusentals iterationer
+- **🔓 Hash Master Mode**: Hemlig funktionalitet med avancerade hash-funktioner (kräver att du löser gåtan)
+  - 🌈 Regnbågs-hash med olika algoritmer och färger
+  - 🎲 Hash-gissningsspel med djur-teman
+  - 🔍 Hash-kollision simulator för lärande
 - **Färgkodad konsol**: Tydlig visuell separation mellan labels, värden och felmeddelanden
 - **SHA-256 algoritm**: Använder säker hash-algoritm
 - **Säker saltgenerering**: Använder RandomNumberGenerator för kryptografiskt säkra salt-värden
+- **Obfuskerad kod**: Demonstrerar säkerhetskoncepter genom kodning och dekodning
 
 ## Krav
 
@@ -110,6 +145,29 @@ Ditt val: 1
 Ange text att hasha: lösenord123
 
 Hash (utan salt): 8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92
+```
+
+### Exempel på att låsa upp Hash Master Mode
+
+```
+Ditt val: 1
+
+Ange text att hasha: [det hemliga ordet du gissade]
+
+Hash (utan salt): [en lång hash-sträng visas här]
+
+[Kopiera hash-värdet och använd det som menyval]
+
+Ditt val: [klistra in den långa hash-strängen här]
+
+🎉 GRATTIS! Du hittade det hemliga easter egget! 🎉
+
+════════════════════════════════════════════════
+║              🔓 HASH MASTER MODE 🔓            ║
+════════════════════════════════════════════════
+
+Du har låst upp den hemliga Hash Master-funktionen!
+Här kan du utforska avancerade hash-funktioner...
 ```
 
 ### Exempel på prestandatest
@@ -216,3 +274,37 @@ dotnet run --configuration Release
 ## Utvecklare
 
 Skapad som en demonstration av hashning med och utan salt i .NET C#.
+
+## För den nyfikne utforskaren - Hemlig Hash Master Mode! 🔓
+
+Det finns en dold funktionalitet i applikationen för dem som är kunniga nog att hitta den...
+
+### 🎯 Så här låser du upp den hemliga menyn:
+
+1. **Första steget**: Använd alternativ 1 (Hasha text UTAN salt) i huvudmenyn
+2. **Andra steget**: Mata in ordet `hashmaster` som text att hasha
+3. **Tredje steget**: Kopiera hela hash-resultatet som visas
+4. **Fjärde steget**: Gå tillbaka till huvudmenyn och klistra in hash-värdet som menyval
+5. **Femte steget**: 🎉 Välkommen till Hash Master Mode!
+
+### 🔓 Vad du hittar i Hash Master Mode:
+
+- **� Regnbågs-hash**: Se samma text hashad på olika sätt i olika färger
+- **🎲 Hash-gissningsspel**: Kan du gissa vilken input som skapade en viss hash?
+- **🔍 Hash-kollision simulator**: Lär dig om hash-kollisioner (simulerat)
+
+### ⚠️ Varför är det så svårt?
+
+Detta demonstrerar vikten av:
+- **Hash-säkerhet**: Hash-värden ska inte vara lätta att förutsäga eller manipulera
+- **Obfuskering**: Känslig kod kan döljas från nyfikna ögon
+- **Säkerhet genom oklarheter**: Ibland är det bästa försvaret att inte visa hur något fungerar
+
+### 💡 Tekniska detaljer
+
+Den hemliga funktionen använder:
+- XOR-kryptering för att dölja målhash-värdet i källkoden
+- Binära byte-arrayer istället för klartext-strängar
+- Dynamisk dekryptering vid körning
+
+*"En sann Hash Master vet att säkerhet ligger i detaljerna"*

@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Diagnostics;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -16,7 +17,8 @@ class Program
             SkrivLabel("Välj ett alternativ:");
             Console.WriteLine("  1. Hasha text UTAN salt");
             Console.WriteLine("  2. Hasha text MED salt");
-            Console.WriteLine("  3. Avsluta");
+            Console.WriteLine("  3. Prestandatest - Jämför metoder");
+            Console.WriteLine("  4. Avsluta");
             Console.WriteLine();
             SkrivPrompt("Ditt val: ");
             var val = Console.ReadLine();			switch (val)
@@ -28,6 +30,9 @@ class Program
 					HashMedSalt();
 					break;
 				case "3":
+					PrestandaTest();
+					break;
+				case "4":
 					return;
                 default:
                     SkrivFelmeddelande("Ogiltigt val. Försök igen.");
@@ -106,6 +111,69 @@ class Program
         Console.WriteLine();
         SkrivVärde("Salt: ", salt);
         SkrivVärde("Hash (med salt): ", hash);
+    }
+
+    static void PrestandaTest()
+    {
+        Console.WriteLine();
+        SkrivLabel("Prestandatest - Jämför hashning med och utan salt");
+        Console.WriteLine();
+        
+        SkrivPrompt("Ange text att testa: ");
+        string? input = Console.ReadLine();
+        if (string.IsNullOrEmpty(input))
+        {
+            SkrivFelmeddelande("Ingen text angavs.");
+            return;
+        }
+
+        SkrivPrompt("Antal iterationer (rekommenderat: 10000): ");
+        string? iterationInput = Console.ReadLine();
+        if (!int.TryParse(iterationInput, out int iterations) || iterations <= 0)
+        {
+            iterations = 10000;
+            Console.WriteLine($"Använder standardvärde: {iterations} iterationer");
+        }
+
+        Console.WriteLine();
+        SkrivLabel("Startar prestandatest...");
+        Console.WriteLine();
+
+        // Test utan salt
+        Stopwatch sw = Stopwatch.StartNew();
+        for (int i = 0; i < iterations; i++)
+        {
+            BeraknaHash(input);
+        }
+        sw.Stop();
+        double tidUtanSalt = sw.Elapsed.TotalMilliseconds;
+
+        // Test med salt
+        sw.Restart();
+        for (int i = 0; i < iterations; i++)
+        {
+            string salt = SkapaSalt(16);
+            BeraknaHash(input + salt);
+        }
+        sw.Stop();
+        double tidMedSalt = sw.Elapsed.TotalMilliseconds;
+
+        // Visa resultat
+        SkrivLabel("Resultat:");
+        SkrivVärde($"Utan salt ({iterations:N0} iterationer): ", $"{tidUtanSalt:F2} ms");
+        SkrivVärde($"Med salt ({iterations:N0} iterationer): ", $"{tidMedSalt:F2} ms");
+        
+        double skillnad = tidMedSalt - tidUtanSalt;
+        double procentuellSkillnad = (skillnad / tidUtanSalt) * 100;
+        
+        SkrivVärde("Skillnad: ", $"{skillnad:F2} ms ({procentuellSkillnad:F1}% långsammare med salt)");
+        SkrivVärde("Genomsnitt per hash utan salt: ", $"{tidUtanSalt / iterations:F4} ms");
+        SkrivVärde("Genomsnitt per hash med salt: ", $"{tidMedSalt / iterations:F4} ms");
+        
+        Console.WriteLine();
+        Console.ForegroundColor = ConsoleColor.Cyan;
+        Console.WriteLine("💡 Salt gör hashning långsammare men betydligt säkrare!");
+        Console.ResetColor();
     }
 
 	static string BeraknaHash(string input)
